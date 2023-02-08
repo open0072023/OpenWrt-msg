@@ -75,6 +75,8 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        sudo rm -rf openwrt/package/kernel/mt76
+        svn co https://github.com/openwrt/openwrt/blob/openwrt-22.03/package/kernel/mt76 openwrt/package/kernel/mt76
         mkdir -p openwrt/target/linux/ramips/base-files/etc/hotplug.d/ieee80211
         cp -f config/1907/mt7621.mk openwrt/target/linux/ramips/image/mt7621.mk
         cp -f config/1907/mt7621_raisecom_msg1500-x-00.dts openwrt/target/linux/ramips/dts/mt7621_raisecom_msg1500-x-00.dts
